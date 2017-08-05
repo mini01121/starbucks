@@ -1,0 +1,913 @@
+@charset "UTF-8";
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+/*COMMON*/
+.container {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Nanum Gothic', sans-serif;
+    /*overflow-x: hidden;*/
+}
+img { vertical-align: top; }
+/*BTN*/
+.btn {
+    width: 130px;
+    padding: 10px;
+    border: 2px solid #222;
+    border-radius: 4px;
+    color: #222;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    transition: all .5s;
+}
+.btn:hover {
+    background: #222;
+    color: white;
+}
+.btn.btn-reverse {
+    background: #222;
+    color: #FFF;
+}
+.btn.btn-reverse:hover {
+    background: none;
+    color: #222;
+}
+.btn.btn-brown {
+    color: #592B18;
+    border-color: #592B18;
+}
+.btn.btn-brown:hover {
+    color: #FFF;
+    background: #592B18;
+}
+.btn.btn-gold {
+    color: #D9AA8A;
+    border-color: #D9AA8A;
+}
+.btn.btn-gold:hover {
+    color: #FFF;
+    background: #D9AA8A;
+}
+.btn.btn-white {
+    color: #FFF;
+    border-color: #FFF;
+}
+.btn.btn-white:hover {
+    color: #222;
+    background: #FFF;
+}
+/*ARROW BTN*/
+.arrow-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 20px;
+    position: relative;
+    border: .1em solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+    display: block;
+    transition: all .5s;
+}
+.arrow-btn.arrow-btn-left { transform: rotate(180deg); }
+.arrow-btn.arrow-btn-right { transform: rotate(0deg); }
+.arrow-btn.arrow-btn-top { transform: rotate(-90deg); }
+.arrow-btn.arrow-btn-bottom { transform: rotate(90deg); }
+.arrow-btn::before,
+.arrow-btn::after {
+    content: "";
+    width: 40%;
+    height: .17em;
+    background: #333;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transition: all .5s;
+}
+.arrow-btn::before {
+    transform: rotate(45deg);
+    transform-origin: 100% 0;
+}
+.arrow-btn::after {
+    transform: rotate(-45deg);
+    transform-origin: 100% 100%;
+    margin-top: -.17em;
+}
+.arrow-btn:hover {
+    background: #333;
+}
+.arrow-btn:hover::before,
+.arrow-btn:hover::after {
+    background: #FFF;
+}
+/*ARROW BTN WHITE*/
+.arrow-btn.arrow-btn-white {
+    border-color: #FFF;
+}
+.arrow-btn.arrow-btn-white::before,
+.arrow-btn.arrow-btn-white::after {
+    background: #FFF;
+}
+.arrow-btn.arrow-btn-white:hover {
+    background: #FFF;
+}
+.arrow-btn.arrow-btn-white:hover::before,
+.arrow-btn.arrow-btn-white:hover::after {
+    background: #333;
+}
+/*ARROW BTN PLUS*/
+.arrow-btn.arrow-btn-plus {
+    border-color: #FFF;
+}
+.arrow-btn.arrow-btn-plus::before,
+.arrow-btn.arrow-btn-plus::after {
+    width: 55%;
+    background: #FFF;
+    transform-origin: 50% 50%;
+    top: 46%;
+    left: 24%;
+    margin: 0;
+}
+.arrow-btn.arrow-btn-plus::before {
+    transform: rotate(0deg);
+}
+.arrow-btn.arrow-btn-plus::after {
+    transform: rotate(90deg);
+}
+.arrow-btn.arrow-btn-plus:hover {
+    background: #FFF;
+}
+.arrow-btn.arrow-btn-plus:hover::before,
+.arrow-btn.arrow-btn-plus:hover::after {
+    background: #222;
+}
+/*BACKGROUND POSITION ATTACHMENT*/
+.bg-fixed {
+    background: no-repeat center fixed;
+    background-size: cover;
+}
+
+
+/*GNB*/
+.gnb {
+    width: 100%;
+    height: 122px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+}
+
+
+/*TOP-CARD*/
+.top-card {
+    background: #111111;
+    color: white;
+    display: none;
+}
+.top-card .inner {
+    width: 1100px;
+    margin: 0 auto;
+    padding: 20px 0;
+    position: relative;
+    letter-spacing: -1px;
+}
+.top-card .card {
+    width: 50%;
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+    padding: 20px;
+    border-right: 1px solid #353535;
+}
+.top-card .card:last-child {
+    border-right: none;
+}
+.top-card .icon {
+    float: left;
+}
+.top-card h1 {
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 1.8;
+}
+.top-card p {
+    font-size: 14px;
+    line-height: 1.4;
+    word-break: keep-all;
+}
+.top-card .btn-group {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+}
+.top-card .btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    float: left;
+    margin: 4px;
+}
+
+
+/*HEADER*/
+header {
+    background: url('../img/header_bg.jpg') repeat-x top,
+                url('../img/header_figure_pattern.jpg') repeat-x bottom,
+                #2c2a29;
+    border-top: 2px solid black;
+    border-bottom: 1px solid #c8c8c8;
+    position: relative;
+    overflow: hidden;
+}
+header .inner {
+    width: 1100px;
+    height: 120px;
+    padding: 0;
+    position: relative;
+    margin: 0 auto;
+}
+header .logo {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    z-index: 1;
+}
+header .sub-menu {
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+header .sub-menu li {
+    float: left;
+}
+header .sub-menu li::before {
+    content: "";
+    width: 1px;
+    height: 12px;
+    background: #e5e5e5;
+    margin-top: 12px;
+    float: left;
+    display: block;
+}
+header .sub-menu li:first-child::before,
+header .sub-menu li.search::before,
+header .sub-menu li.toggle-top-card::before {
+    width: 0;
+    height: 0;
+}
+header .sub-menu li.search {
+    width: 38px;
+    height: 34px;
+    position: relative;
+    cursor: text;
+}
+header .sub-menu li.search input {
+    width: 38px;
+    height: 34px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background: white;
+    padding: 4px 10px;
+    box-sizing: border-box;
+    color: #777;
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+header .sub-menu li.search input:focus {
+    border: 1px solid #669900;
+}
+header .sub-menu li.search img {
+    position: absolute;
+    top: 7px;
+    right: 9px;
+}
+header .sub-menu li.search:hover img {
+    opacity: 0.6;
+}
+header .sub-menu li.toggle-top-card {
+    background: url("../img/top_card_toggle.png");
+    width: 55px;
+    height: 44px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    margin: -10px 0 0 10px;
+}
+header .sub-menu li.toggle-top-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+header .sub-menu li a {
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    padding: 11px 16px;
+    color: #656565;
+    display: block;
+}
+header .sub-menu li a:hover {
+    color: black;
+}
+
+
+header .main-menu {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+header .main-menu > ul {
+    float: right;
+}
+header .main-menu > ul > li {
+    float: left;
+}
+header .main-menu > ul > li > a {
+    padding: 10px 20px 34px 20px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #333;
+    display: block;
+}
+header .main-menu > ul > li.on > a {
+    background: #2C2A29;
+    color: #669900;
+}
+
+
+header .main-menu > ul > li.on .mega-menu {
+    display: block;
+}
+header .mega-menu {
+    width: 100%;
+    position: absolute;
+    top: 57px;
+    left: 0;
+    display: none;
+}
+header .mega-menu .menu {
+    padding: 20px 0;
+}
+header .mega-menu .menu > li {
+    width: 220px;
+    float: left;
+}
+header .mega-menu .menu > li h1 {
+    padding: 3px 0 12px 0;
+    font-size: 14px;
+}
+header .mega-menu .menu > li h1 a {
+    color: #fff;
+}
+header .mega-menu .menu > li ul li {
+    padding: 5px 0;
+    font-size: 12px;
+}
+header .mega-menu .menu > li ul li a {
+    color: #999;
+}
+header .mega-menu .menu > li ul li a:hover {
+    color: #669900;
+}
+header .mega-menu .texture {
+    height: 152px;
+    padding: 26px 0;
+    box-sizing: border-box;
+}
+header .mega-menu .texture .left-figure { float: left; }
+header .mega-menu .texture .right-figure { float: right; }
+
+header .mega-menu .texture .right-figure .image {
+    float: left;
+    margin-right: 15px;
+}
+header .mega-menu .texture .right-figure .caption {
+    width: 220px;
+    float: left;
+}
+header .mega-menu .texture .caption {
+    display: block;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+header .mega-menu .texture .caption h1 {
+    color: #999;
+    font-weight: 900;
+    font-size: 12px;
+    margin: 0;
+}
+header .mega-menu .texture .caption h1.new::after {
+    content: url("../img/icon_new.png");
+    position: relative;
+    top: 3px;
+    left: 5px;
+}
+header .mega-menu .texture .caption p {
+    color: #64a70b;
+}
+
+
+/*VISUAL*/
+.visual {
+    background: url("../img/visual_bg.jpg") center;
+    margin-top: 122px;
+}
+.visual .inner {
+    width: 1100px;
+    height: 646px;
+    margin: 0 auto;
+    position: relative;
+}
+.visual .title-group {
+    position: absolute;
+    top: 88px;
+    left: -10px;
+}
+.visual .btn {
+    position: absolute;
+    top: 259px;
+    left: 173px;
+}
+.visual .cup {
+
+}
+.visual .cup1_img {
+    position: absolute;
+    bottom: 0;
+    right: -47px;
+}
+.visual .cup1_desc {
+    position: absolute;
+    top: 38px;
+    right: 171px;
+}
+.visual .cup2_img {
+    position: absolute;
+    bottom: 0;
+    right: 162px;
+}
+.visual .cup2_desc {
+    position: absolute;
+    top: 321px;
+    right: 416px;
+}
+.visual .spoon {
+    position: absolute;
+    bottom: 0;
+    left: 275px;
+}
+.visual .fade-in {
+    opacity: 0;
+}
+
+
+/*NOTICE*/
+.notice-line {
+    position: relative;
+}
+.notice-line .bg-left {
+    width: 50%;
+    height: 100%;
+    background: #111;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.notice-line .bg-right {
+    width: 50%;
+    height: 100%;
+    background: #f6f5ef;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.notice-line .inner {
+    width: 1100px;
+    height: 62px;
+    margin: 0 auto;
+    position: relative;
+}
+.notice-line .left-inner {
+    width: 60%;
+    height: 62px;
+    background: #111;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.notice-line .left-inner h1 {
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 62px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.notice-line .left-inner .slider {
+    width: 500px;
+    height: 62px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 62px;
+    position: absolute;
+    top: 0;
+    left: 90px;
+}
+.notice-line .left-inner .slider a {
+    color: white;
+}
+.notice-line .left-inner .arrow-btn {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 11px;
+    right: 20px;
+}
+.notice-line .right-inner {
+    width: 40%;
+    height: 62px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.notice-line .right-inner h1 {
+    color: #111;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 62px;
+    position: absolute;
+    top: 0;
+    right: 90px;
+}
+.notice-line .right-inner .toggle-promotion {
+    position: absolute;
+    top: 11px;
+    right: 20px;
+}
+
+
+/*PROMOTION*/
+.promotion {
+    background: #f6f5ef;
+}
+.promotion .inner {
+    width: 1920px;
+    padding: 40px 0;
+    position: relative;
+    left: 50%;
+    margin-left: -960px;
+    /*display: none;*/
+}
+.promotion .slider {
+    width: 1920px;
+    height: 553px;
+}
+.promotion .prev,
+.promotion .next {
+    width: 42px;
+    height: 42px;
+    position: absolute;
+    top: 200px;
+    z-index: 100;
+}
+.promotion .prev {
+    left: 450px;
+}
+.promotion .next {
+    right: 450px;
+}
+
+
+/*REWARDS*/
+.rewards {
+    position: relative;
+}
+.rewards .bg-left {
+    width: 50%;
+    height: 100%;
+    background: #272727;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.rewards .bg-right {
+    width: 50%;
+    height: 100%;
+    background: #d5c798;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.rewards .inner {
+    background: url("../img/rewards_bg.jpg");
+    width: 1100px;
+    height: 241px;
+    margin: 0 auto;
+    position: relative;
+}
+.rewards .btn-group {
+    width: 250px;
+    position: absolute;
+    top: 124px;
+    right: 0;
+}
+.rewards .btn-group > .btn {
+    float: left;
+}
+.rewards .sign-up {
+    margin-right: 10px;
+}
+.rewards .sign-in {
+    width: 110px;
+}
+.rewards .gift {
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+/*COFFEE BEANS*/
+.beans {
+    background-image: url("../img/beans_bg.jpg");
+}
+.beans .inner {
+    width: 1100px;
+    height: 700px;
+    margin: 0 auto;
+    position: relative;
+}
+.beans .icon1 {
+    position: absolute;
+    top: 50px;
+    left: 0;
+}
+.beans .icon2 {
+    position: absolute;
+    top: 350px;
+    left: 150px;
+}
+.beans .icon3 {
+    position: absolute;
+    bottom: -120px;
+    right: 0;
+}
+
+
+/*SEASON PRODUCT*/
+.season-product {
+    background: url("../img/season_product_bg.jpg");
+}
+.season-product .inner {
+    width: 1100px;
+    height: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+.season-product .description {
+    position: absolute;
+    top: 110px;
+    right: 100px;
+}
+.season-product .description .desc {
+    margin-top: 10px;
+}
+.season-product .description .more {
+    margin-top: 15px;
+}
+
+
+/*RESERVE*/
+.reserve {
+    background: url("../img/reserve_bg.jpg");
+}
+.reserve .inner {
+    width: 1100px;
+    height: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+.reserve .description {
+    position: absolute;
+    top: 110px;
+    left: 0;
+}
+.reserve .description .logo {
+    margin-right: 50px;
+    float: left;
+}
+.reserve .description .more {
+    position: absolute;
+    top: 124px;
+    left: 208px;
+}
+.reserve .product {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+/*PICK YOUR FAVORITE*/
+.favorite {
+    background-image: url("../img/favorite_bg.jpg");
+}
+.favorite .inner {
+    width: 1100px;
+    height: 700px;
+    margin: 0 auto;
+    position: relative;
+}
+.favorite .description {
+    width: 362px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
+.favorite .description .title {
+    margin-bottom: 40px;
+    float: right;
+}
+.favorite .description .desc {
+    margin-bottom: 40px;
+    float: right;
+}
+.favorite .description .more {
+    float: right;
+}
+
+
+/*VIEW THE STORE*/
+.view-store {
+    background-image: url("../img/view_store_bg.jpg");
+    height: 600px;
+    position: relative;
+}
+
+
+/*FIND STORE*/
+.find-store {
+    background: url("../img/find_store_bg.jpg");
+}
+.find-store .inner {
+    width: 1100px;
+    height: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+.find-store .texture1 {
+    position: absolute;
+    top: 0;
+    left: 400px;
+}
+.find-store .texture2 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.find-store .icon {
+    border-radius: 50%;
+    box-shadow: 2px 2px 8px 0 rgba(0,0,0,.5);
+    position: absolute;
+}
+.find-store .icon1 {
+    top: -60px;
+    left: 0;
+}
+.find-store .icon2 {
+    top: 150px;
+    left: 250px;
+}
+.find-store .description {
+    position: absolute;
+    top: 120px;
+    left: 550px;
+}
+.find-store .description .title {
+    margin-bottom: 20px;
+}
+.find-store .description .desc {
+    margin-bottom: 20px;
+}
+
+
+/*AWARD*/
+.award {
+    background: #272727;
+}
+.award .inner {
+    width: 1100px;
+    padding: 40px 0;
+    margin: 0 auto;
+    position: relative;
+}
+.award .slider {
+    width: 1100px;
+    height: 40px;
+}
+.award .prev,
+.award .next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    opacity: .3;
+}
+.award .prev {
+    left: -100px;
+}
+.award .next {
+    right: -100px;
+}
+
+
+/*FOOTER*/
+footer {
+    background: #272727;
+    padding: 40px 0 60px 0;
+    border-top: 1px solid #333;
+}
+footer .menu {
+    display: table;
+    margin: 0 auto;
+}
+footer .menu li {
+    float: left;
+    position: relative;
+    margin-right: 30px;
+}
+footer .menu li::before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 12px;
+    background: #555;
+    position: absolute;
+    top: 4px;
+    left: -15px;
+}
+footer .menu li:first-child::before {
+    display: none;
+}
+footer .menu li a {
+    color: #CCC;
+    font-size: 12px;
+    font-weight: 600;
+}
+footer .menu li.green a {
+    color: #669900;
+}
+footer .btn-group {
+    display: table;
+    margin: 30px auto 0 auto;
+}
+footer .btn-group > .btn {
+    float: left;
+    margin-right: 10px;
+    font-size: 12px;
+}
+footer .btn-group > .btn:last-child {
+    margin-right: 0;
+}
+footer .info {
+    display: table;
+    margin: 30px auto 0 auto;
+}
+footer .info li {
+    float: left;
+    margin-right: 20px;
+    color: #999;
+    font-size: 12px;
+}
+footer .info li:last-child {
+    margin-right: 0;
+}
+footer .copyright {
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 12px;
+}
+footer .logo {
+    margin-top: 30px;
+    text-align: center;
+}
+
+
+#to-top {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 1000;
+    display: none;
+}
+#to-top .arrow-btn{
+    border-radius: 10px;
+}
