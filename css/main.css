@@ -570,6 +570,19 @@ header .mega-menu .texture .caption p {
     width: 1920px;
     height: 553px;
 }
+.promotion .slider ul {
+    margin-left: 550px;
+}
+.promotion .slider ul li {
+    position: relative;
+}
+.promotion .slider ul li .btn {
+    position: absolute;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
 .promotion .prev,
 .promotion .next {
     width: 42px;

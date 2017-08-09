@@ -26,7 +26,8 @@
         toggleTopCard();
         megaMenuHandler();
         searchHandler();
-        firstAniamtions()
+        firstAniamtions();
+        sliderHandler()
     }
 
     function toggleTopCard () {
@@ -158,6 +159,25 @@
     function firstAniamtions() {
         $('.visual .fade-in').each(function (index) {
             TweenMax.to(this, 1, { opacity:1, delay: (index + 1) * .7 });
+        });
+    }
+
+    function sliderHandler () {
+        $('.notice-line .slider ul').bxSlider({
+            mode: 'vertical',
+            pager: false,//pager는 버튼을 이야기한다.
+            controls: false,
+            auto: true, //자동슬라이드를 쓰겠다.
+            pause: 5000 //5초에 한번씩 움직이겠다.
+        });
+
+        $('.promotion .slider ul').bxSlider({
+            auto: true,
+            minSlides: 1, //최소 슬라이드개수
+            maxSlides: 3, //최대 슬라이드 개수
+            moveSlides: 1, //몇개씩 한번에 움직일지 개수설정
+            slideWidth: 819, //적어주는게 좋다. 오류를 막아준다.
+            slideMargin: 10
         });
     }
 
