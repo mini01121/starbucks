@@ -176,6 +176,14 @@
         });
 
         _sb.promotionSlider = $('.promotion .slider ul').bxSlider({
+            pager: true, //pager를 쓰므로 true
+            controls: false,
+            autoControls: true, //일시정지,재생 버튼
+            pagerSelector: '.promotion .pager',
+            autoControlsSelector: '.promotion .auto-controls',
+            autoControlsCombine: true, //stop과 start를 한개로 보이게 하겠다.toggle처럼
+            startText: '', //빈 문자 기능
+            stopText: '',
             auto: true,
             pause: 5000,
             minSlides: 1, //최소 슬라이드개수
