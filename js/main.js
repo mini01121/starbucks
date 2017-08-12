@@ -19,6 +19,8 @@
         _sb.$searchImg = _sb.$search.find('img');
         _sb.searchValue = '';
         _sb.ENTER_KEY = 13; //상수(절대 변하지않는)를 만들때 대문자로 입력
+        _sb.$promotion = $('.promotion .inner');
+        _sb.$togglePromotionBtn = $('.notice-line .toggle-promotion');
     }
     
     // 기능을 실행하는 부분
@@ -26,7 +28,10 @@
         toggleTopCard();
         megaMenuHandler();
         searchHandler();
-        firstAniamtions()
+        firstAniamtions();
+        sliderHandler();
+        togglePromotionHandler();
+        playTogglePromotionBtn();
     }
 
     function toggleTopCard () {
@@ -159,6 +164,112 @@
         $('.visual .fade-in').each(function (index) {
             TweenMax.to(this, 1, { opacity:1, delay: (index + 1) * .7 });
         });
+        floatingObject('.beans .icon1', 1.5, 2.5, 1, 15);
+        floatingObject('.beans .icon2', 1, 2, 5, 15);
+        floatingObject('.beans .icon3', 1.5, 2.5, 1.5, 20);
+    }
+
+    function sliderHandler () {
+        $('.notice-line .slider ul').bxSlider({
+            mode: 'vertical',
+            pager: false,//pager는 버튼을 이야기한다.
+            controls: false,
+            auto: true, //자동슬라이드를 쓰겠다.
+            pause: 5000 //5초에 한번씩 움직이겠다.
+        });
+
+        _sb.promotionSlider = $('.promotion .slider ul').bxSlider({
+            pager: true, //pager를 쓰므로 true
+            controls: false,
+            autoControls: true, //일시정지,재생 버튼
+            pagerSelector: '.promotion .pager',
+            autoControlsSelector: '.promotion .auto-controls',
+            autoControlsCombine: true, //stop과 start를 한개로 보이게 하겠다.toggle처럼
+            startText: '', //빈 문자 기능
+            stopText: '',
+            auto: true,
+            pause: 5000,
+            minSlides: 1, //최소 슬라이드개수
+            maxSlides: 3, //최대 슬라이드 개수
+            moveSlides: 1, //몇개씩 한번에 움직일지 개수설정
+            slideWidth: 819, //적어주는게 좋다. 오류를 막아준다.
+            slideMargin: 10,
+            onSliderLoad: function () {
+                $('.promotion .slider li').removeClass('active');
+                $('.promotion .slider li.first').addClass('active');
+            },
+            onSlideAfter: function ($slideElement, oldIndex, newIndex) {
+                $('.promotion .slider li').removeClass('active');
+                $slideElement.addClass('active');
+            }
+        });
+
+        $('.promotion .prev').on('click', function () {
+            _sb.promotionSlider.goToPrevSlide();
+            _sb.promotionSlider.stopAuto();
+        });
+        $('.promotion .next').on('click', function () {
+            _sb.promotionSlider.goToNextSlide();
+            _sb.promotionSlider.stopAuto();
+        });
+    }
+
+    function togglePromotionHandler() {
+        _sb.$togglePromotionBtn.on('click',function () {
+            if (_sb.$promotion.data('opened') === 'opened') {
+                closePromotion();
+            } else {
+                openPromotion();
+            }
+        });
+    }
+
+    function openPromotion(){
+        _sb.$promotion
+            .stop()
+            .slideDown(400)
+            .data({
+                opened: 'opened'
+             });
+        _sb.promotionSlider.reloadSlider();
+        pauseTogglePromotionBtn();
+    }
+
+    function closePromotion(){
+        _sb.$promotion
+            .stop()
+            .slideUp(400, function () {
+                _sb.promotionSlider.destroySlider();
+            })
+            .data({
+                opened: ''
+            });
+        playTogglePromotionBtn();
+
+    }
+
+    function playTogglePromotionBtn () {
+        TweenMax.set(_sb.$togglePromotionBtn, { scale: .9 });
+        TweenMax.to(_sb.$togglePromotionBtn, .5, { rotation: 0 });
+        _sb.toggleZoom = TweenMax.to(_sb.$togglePromotionBtn, 1, {
+            scale: 1.1,
+            repeat: -1,
+            yoyo: true
+        });
+    }
+
+    function pauseTogglePromotionBtn () {
+        TweenMax.set(_sb.$togglePromotionBtn, { scale: 1 });
+        TweenMax.to(_sb.$togglePromotionBtn, .5, {rotation: -180 });
+        _sb.toggleZoom.pause();
+    }
+    
+    function random(min,max) {
+        return parseFloat(Math.random() * (max - min) + min).toFixed(2);
+    }
+
+    function floatingObject(selector, minTime, maxTime, delay, size) {
+        TweenMax.to(selector, random(minTime, maxTime), { delay: random(0, delay), y: size, repeat: -1, yoyo: true, ease: Power0.easeNone });
     }
 
 }(jQuery));

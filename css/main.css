@@ -564,11 +564,68 @@ header .mega-menu .texture .caption p {
     position: relative;
     left: 50%;
     margin-left: -960px;
-    /*display: none;*/
+    display: none;
 }
 .promotion .slider {
     width: 1920px;
     height: 553px;
+}
+.promotion .slider ul {
+    margin-left: 550px;
+}
+.promotion .slider ul li {
+    position: relative;
+    opacity: .5;
+}
+.promotion .slider ul li.active {
+    opacity: 1;
+}
+.promotion .slider ul li .btn {
+    position: absolute;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.promotion .controls {
+    display: table;
+    margin: 20px auto 0 auto;
+}
+.promotion .auto-controls {
+    float: left;
+    margin-right: 10px;
+}
+.promotion .auto-controls .bx-start {
+    background: url("../img/promotion_slide_play.png");
+    width: 9px;
+    height: 12px;
+    display: block;
+}
+.promotion .auto-controls .bx-stop {
+    background: url("../img/promotion_slide_pause.png");
+    width: 9px;
+    height: 12px;
+    display: block;
+}
+.promotion .pager {
+    float: left;
+}
+.promotion .pager .bx-pager-item {
+    float: left;
+    margin-right: 10px;
+}
+.promotion .pager .bx-pager-item:last-child {
+    margin: 0;
+}
+.promotion .pager .bx-pager-item a {
+    background: url("../img/promotion_slide_pager.png");
+    width: 13px;
+    height: 12px;
+    display: block;
+    text-indent: -999px;
+}
+.promotion .pager .bx-pager-item a.active {
+    background: url("../img/promotion_slide_pager_on.png");
 }
 .promotion .prev,
 .promotion .next {
