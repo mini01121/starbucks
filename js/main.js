@@ -35,6 +35,8 @@
         playTogglePromotionBtn();
         windowScroll();
         checkSectionOffsetTop();
+        setReturnToPosition();
+        toTopBtnHandler();
     }
 
     function toggleTopCard () {
@@ -305,6 +307,78 @@
         $('.section').each(function () {
            _sb.sectionOffsetTop.push($(this).offset().top);
         });
+
+    }
+
+    function changeSectionHandler() {
+        returnToPosition('.season-product', 1, 4);
+        returnToPosition('.reserve', 1, 5);
+        returnToPosition('.favorite', 1, 6);
+        returnToPosition('.find-store', 1, 8);
+
+        resetReturnToPosition();
+        toggleToTop();
+    }
+    
+    function setReturnToPosition() {
+     $('.returnToPosition').each(function () {
+         var x=100;
+
+         if ($(this).hasClass('to-right')) { //왼쪽에서 오른쪽으로 들어오는
+               //음수를 줘서 왼쪽 밖으로 셋팅을 해놓는것,움직이기전 셋팅
+             //음수
+             x *= -1; // x = x*-1 이랑 같은말
+         }else if($(this).hasClass('to-left')){ //오른쪽에서 왼쪽으로 들어오는
+             //양수
+             x = Math.abs(x);
+         }
+         TweenMax.set(this, { x: x, opacity: 0 });
+
+     });
+         
+
+    }
+    
+    function returnToPosition(sectionSelector,duration,whichSectionIndex) {
+        if (_sb.currentSecIndex === whichSectionIndex){
+            $(sectionSelector+' .returnToPosition').each(function (index) {
+                TweenMax.to(this, duration,{
+                    delay: index * .3,
+                    x:0,
+                    opacity: 1
+                });
+            })
+        }
+    }
+    function resetReturnToPosition() {
+        if (_sb.currentSecIndex <= 1){
+            setReturnToPosition();
+        }
+    }
+
+    function toTopBtnHandler() {
+        $('#to-top').on('click', function () {
+            toTop();
+        });
+    }
+
+    function toTop() {
+        TweenMax.to(window, .7, { scrollTo: 0 });
+    }
+
+    //섹션이 바뀔때 되야하므로 섹션핸들러에 실행할수있게 한다.
+    function toggleToTop() {
+        if (_sb.currentSecIndex > 3) {
+            showToTop();
+        } else {
+            hideToTop();
+        }
+    }
+
+    function showToTop() {
+
+    }
+    function hideToTop() {
 
     }
 
