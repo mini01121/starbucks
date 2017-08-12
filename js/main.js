@@ -21,6 +21,7 @@
         _sb.ENTER_KEY = 13; //상수(절대 변하지않는)를 만들때 대문자로 입력
         _sb.$promotion = $('.promotion .inner');
         _sb.$togglePromotionBtn = $('.notice-line .toggle-promotion');
+        _sb.currentSecIndex = 0; //처음 화면 들어왔을때 뜨는 섹션 0번 지정
     }
     
     // 기능을 실행하는 부분
@@ -32,6 +33,8 @@
         sliderHandler();
         togglePromotionHandler();
         playTogglePromotionBtn();
+        windowScroll();
+        checkSectionOffsetTop();
     }
 
     function toggleTopCard () {
@@ -164,6 +167,7 @@
         $('.visual .fade-in').each(function (index) {
             TweenMax.to(this, 1, { opacity:1, delay: (index + 1) * .7 });
         });
+
         floatingObject('.beans .icon1', 1.5, 2.5, 1, 15);
         floatingObject('.beans .icon2', 1, 2, 5, 15);
         floatingObject('.beans .icon3', 1.5, 2.5, 1.5, 20);
@@ -270,6 +274,38 @@
 
     function floatingObject(selector, minTime, maxTime, delay, size) {
         TweenMax.to(selector, random(minTime, maxTime), { delay: random(0, delay), y: size, repeat: -1, yoyo: true, ease: Power0.easeNone });
+    }
+
+    function windowScroll () {
+        $(window).on( 'scroll',function () {
+            _sb.scrollLocate = $(this).scrollTop() + ($(this).height() / 2);
+
+            checkCurrentSection();
+        } );
+    }
+
+    function checkCurrentSection() {
+        var secLength = _sb.sectionOffsetTop.length;
+
+        for(var i=0; i < secLength; i++) {
+            if (_sb.scrollLocate >=_sb.sectionOffsetTop[i] && _sb.scrollLocate < _sb.sectionOffsetTop[i + 1]) {
+                if (_sb.currentSecIndex === i) {
+                    return; //함수를 멈춘다. 같은장소에서는 알아내는걸 멈춰라.
+                } else {
+                    _sb.currentSecIndex = i; //현재섹션 몇번인지 알아내주는.. 갱신해주는, 화면 섹션이 바뀔때마다
+                    changeSectionHandler();
+                }
+            }
+        }
+
+    }
+
+    function checkSectionOffsetTop() {
+        _sb.sectionOffsetTop = [];
+        $('.section').each(function () {
+           _sb.sectionOffsetTop.push($(this).offset().top);
+        });
+
     }
 
 }(jQuery));
