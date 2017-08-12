@@ -164,6 +164,9 @@
         $('.visual .fade-in').each(function (index) {
             TweenMax.to(this, 1, { opacity:1, delay: (index + 1) * .7 });
         });
+        floatingObject('.beans .icon1', 1.5, 2.5, 1, 15);
+        floatingObject('.beans .icon2', 1, 2, 5, 15);
+        floatingObject('.beans .icon3', 1.5, 2.5, 1.5, 20);
     }
 
     function sliderHandler () {
@@ -259,6 +262,13 @@
         TweenMax.set(_sb.$togglePromotionBtn, { scale: 1 });
         TweenMax.to(_sb.$togglePromotionBtn, .5, {rotation: -180 });
         _sb.toggleZoom.pause();
+    }
+    
+    function random(min,max) {
+        return parseFloat(Math.random() * (max - min) + min).toFixed(2));
+    }
+    function floatingObject(selector, minTime, maxTime, delay, size) {
+        TweenMax.to(selector, random(minTime, maxTime), { delay: random(0, delay), y: size, repeat: -1, yoyo: true, ease: Power0.easeNone });
     }
 
 }(jQuery));
