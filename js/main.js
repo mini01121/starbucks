@@ -265,8 +265,9 @@
     }
     
     function random(min,max) {
-        return parseFloat(Math.random() * (max - min) + min).toFixed(2));
+        return parseFloat(Math.random() * (max - min) + min).toFixed(2);
     }
+
     function floatingObject(selector, minTime, maxTime, delay, size) {
         TweenMax.to(selector, random(minTime, maxTime), { delay: random(0, delay), y: size, repeat: -1, yoyo: true, ease: Power0.easeNone });
     }
