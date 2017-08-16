@@ -37,6 +37,7 @@
         checkSectionOffsetTop();
         setReturnToPosition();
         toTopBtnHandler();
+        pluginNiceScroll();
     }
 
     function toggleTopCard () {
@@ -218,6 +219,29 @@
             _sb.promotionSlider.goToNextSlide();
             _sb.promotionSlider.stopAuto();
         });
+
+        _sb.awardSlider = $( '.award .slider ul' ).bxSlider({
+            pager: false,
+            controls: false,
+            auto: true,
+            pause: 3000,
+            minSlides: 5,
+            maxSlides: 5,
+            moveSlides: 1,
+            slideWidth: 192,
+            slideMargin: 35
+        });
+
+        $( '.award .prev' ).on('click', function () {
+            _sb.awardSlider.goToPrevSlide();
+            _sb.awardSlider.stopAuto();
+            restartAwardSlider();
+        });
+        $( '.award .next' ).on('click', function () {
+            _sb.awardSlider.goToNextSlide();
+            _sb.awardSlider. stopAuto();
+            restartAwardSlider();
+        });
     }
 
     function togglePromotionHandler() {
@@ -233,7 +257,9 @@
     function openPromotion(){
         _sb.$promotion
             .stop()
-            .slideDown(400)
+            .slideDown(400, function () {
+                $('htmi').getNiceScroll().resize();
+            })
             .data({
                 opened: 'opened'
              });
@@ -268,6 +294,13 @@
         TweenMax.set(_sb.$togglePromotionBtn, { scale: 1 });
         TweenMax.to(_sb.$togglePromotionBtn, .5, {rotation: -180 });
         _sb.toggleZoom.pause();
+    }
+    
+    function restartAwardSlider() {
+        setTimeout(function () {
+            _sb.awardSlider
+        }, 4000);
+        
     }
     
     function random(min,max) {
@@ -380,6 +413,16 @@
     }
     function hideToTop() {
         $('#to-top').stop(false, true).fadeOut(400);
+    }
+
+    function pluginNiceScroll() {
+        $('html').niceScroll({
+            cursorcolor: 'rgba(0,0,0,.7)',
+            cursorwidth: 10,
+            cursorborder: 'none',
+            cursorbarderradius: 0,
+            zindex: 9999
+        })
     }
 
 }(jQuery));
